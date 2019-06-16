@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<svg width="340" height="100" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="black" fill="white" stroke-width="1">
+    <rect x="40" y="20" width="40" height="40"/>
+    <rect x="80" y="20" width="40" height="40"/>
+    <rect x="120" y="20" width="40" height="40"/>
+    <rect x="160" y="20" width="40" height="40"/>
+    <rect x="200" y="20" width="40" height="40"/>
+    <rect x="240" y="20" width="40" height="40"/>
+    <rect x="280" y="20" width="40" height="40"/>
+  </g>
+  <g stroke="black" fill="black" stroke-width="0" text-anchor="middle" font-size="11">
+    <text x="20" y="45">snum</text>
+    <text x="60" y="15">0</text>
+    <text x="60" y="45">␣</text>
+    <text x="100" y="15">1</text>
+    <text x="100" y="45">␣</text>
+    <text x="140" y="15">2</text>
+    <text x="140" y="45">␣</text>
+    <text x="180" y="15">3</text>
+    <text x="180" y="45">3</text>
+    <text x="220" y="15">4</text>
+    <text x="220" y="45">0</text>
+    <text x="260" y="15">5</text>
+    <text x="260" y="45">4</text>
+    <text x="300" y="15">6</text>
+    <text x="300" y="45">\0</text>
+    <text x="100" y="80">&gt; 1000</text>
+    <text x="220" y="80">&lt; 1000</text>
+  </g>
+</svg>
+
