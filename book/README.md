@@ -8,8 +8,6 @@
 
 Էլ-փոստ։ armenbadal@gmail.com
 
-
-* [ՈՒղերձ](README.md)
 * [Զրույց ներածական](chapter00.md)
 * [Զրույց առաջին](chapter01.md)
 * [Զրույց երկրորդ](chapter02.md)
