@@ -6,13 +6,14 @@
 \usepackage{fontspec}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
+\usepackage[Conny]{fncychap}
 
 \setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEAMariam}
 \setsansfont[Ligatures=TeX,HyphenChar="058A]{GHEAGrapalat}
 \setmonofont{DejaVu Sans Mono}
 
 
-\renewcommand{\chaptername}{Բան}
+\renewcommand{\chaptername}{Զրույց}
 \renewcommand{\contentsname}{Բովանդակություն}
 \renewcommand{\figurename}{Նկար}
 \renewcommand{\tablename}{Աղյուսակ}
@@ -20,13 +21,10 @@
 \renewcommand{\bibname}{Գրականություն}
 \renewcommand{\indexname}{Առարկայական ցանկ}
 
-% - - - - - - - - - - - - - - - - - - - -
-% http://www.stackprinter.com/export?service=tex.stackexchange&question=34424&printer=false&linktohome=true
-\newcommand\Armenian[1]{%
-\ifcase#1\relax\or Ա\or Բ\or Գ\or Դ\or Ե\or Զ\or Է%
-\or Ը\or Թ \or Ժ\or ԺԱ\or ԺԲ\or ԺԳ\fi}
-\renewcommand\thechapter{\Armenian{\value{chapter}}}
-% - - - - - - - - - - - - - - - - - - - -
+%\newcommand\Armenian[1]{%
+%\ifcase#1\relax\or Ա\or Բ\or Գ\or Դ\or Ե\or Զ\or Է%
+%\or Ը\or Թ \or Ժ\or ԺԱ\or ԺԲ\or ԺԳ\fi}
+%\renewcommand\thechapter{\Armenian{\value{chapter}}}
 
 \tolerance=1500
 %\tolerance=10000 % վատ
@@ -63,5 +61,9 @@ numbers=left,fontsize=\small,baselinestretch=1}
 \input{chapter09.tex}
 \input{chapter10.tex}
 \input{chapter11.tex}
+
+%
+\bibliographystyle{plain}
+\bibliography{vcl-book}
 
 \end{document}
