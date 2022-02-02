@@ -1,11 +1,11 @@
 %%\documentclass[a4paper,10pt,draft]{memoir}
 \documentclass[a4paper,12pt,draft]{report}
 \usepackage[top=1in,bottom=1.2in,left=1.2in,right=1in]{geometry}
-\usepackage{fancyvrb}
 
 \usepackage[dvips]{graphicx}
 \usepackage{fontspec}
-
+\usepackage{hyperref}
+\usepackage{fancyvrb}
 
 \setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEAMariam}
 \setsansfont[Ligatures=TeX,HyphenChar="058A]{GHEAGrapalat}
@@ -23,7 +23,8 @@
 % - - - - - - - - - - - - - - - - - - - -
 % http://www.stackprinter.com/export?service=tex.stackexchange&question=34424&printer=false&linktohome=true
 \newcommand\Armenian[1]{%
-\ifcase#1\relax\or Ա\or Բ\or Գ\or Դ\or Ե\or Զ\or Է\or Ը\or Թ\fi}
+\ifcase#1\relax\or Ա\or Բ\or Գ\or Դ\or Ե\or Զ\or Է%
+\or Ը\or Թ \or Ժ\or ԺԱ\or ԺԲ\or ԺԳ\fi}
 \renewcommand\thechapter{\Armenian{\value{chapter}}}
 % - - - - - - - - - - - - - - - - - - - -
 
@@ -57,5 +58,10 @@ numbers=left,fontsize=\small,baselinestretch=1}
 \input{chapter04.tex}
 \input{chapter05.tex}
 \input{chapter06.tex}
+\input{chapter07.tex}
+\input{chapter08.tex}
+\input{chapter09.tex}
+\input{chapter10.tex}
+\input{chapter11.tex}
 
 \end{document}
