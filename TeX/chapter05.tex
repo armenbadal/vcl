@@ -1,0 +1,248 @@
+\chapter{Ստրուկտուրաներ}
+
+\begin{quote}
+\emph{?}
+\end{quote}
+
+Մինչ այժմ, երբ օրինակներում փոփոխականներ կամ ֆունկցիաներ էի հայտարարում,
+օգտագործում էի Սի լեզվի պարզ (սկալյար) տիպերը՝ \kw{int}, \kw{double},
+\kw{float} և այլն։ Բայց, առավել հաճախ կարիք է լինում ծրագրերում օգտագործել
+բաղադրյալ օբյեկտներ, այնպիսիք, որոնց կառուցվածքը սահմանում է ծրագրավորողը։
+Օրինակ, հենց նույն այդ դեկարտյան կետերի հետ աշխատելիս ավելի հարմար կլինի
+ունենալ մի օբյեկտ, որն ունի \ident{x} և \ident{y} հատկությունները
+(դաշտերը), քան աշխատել երկու \kw{double} թվերի կամ նրանց ցուցիչների հետ։
+
+Սի լեզվի \kw{struct} ծառայողական բառը ծրագրավորողին տալիս է այդ
+հնարավորությունը։ Օրինակ.
+
+\begin{Verbatim}
+struct { double x, y; } p0;
+\end{Verbatim}
+
+Այս հրամանով \ident{p0} փոփոխականը հայտարարեցի որպես \ident{x} և \ident{y}
+դաշտերն ունեցող բաղադրյալ օբյեկտ՝ \emph{ստրուկտուրա}։
+
+Ստրուկտուրայի դաշտերին դիմում են \Verb|.| գործողության միջոցով։ Օրինակ,
+\ident{p0} օբյեկտը տպելու համար պետք է գրել.
+
+\begin{Verbatim}
+printf( "%lf, %lf", p0.x, p0.y );
+\end{Verbatim}
+
+Ստրուկտուրային օբյեկտներ սահմանելիս \kw{struct} ծառայողական բառից հետո
+կարելի է գրել ստրուկտուրայի անուն, որն էլ հետագայում կարելի է օգտագործել
+նույն տիպի այլ օբյեկտներ սահմանելիս։ Օրինակ, \ident{p1} դեկարտյան կետի
+սահմանումը կարող է ունենալ այսպիսի սահմանում.
+
+\begin{Verbatim}
+struct point { double x, y; } p1;
+\end{Verbatim}
+
+Այս տիպի արտահայտությունը թույլ է տալիս ծրագում ամեն անգամ
+\texttt{struct \{ double x, y; \}} գրելու փոխարեն պարզապես գրել
+\texttt{struct point}։
+
+Հիմա հետ վարադառնամ իմ հին խնդիրն, երբ գրեցի \ident{polar} ֆունկցիան, որը
+տրված կետի դեկարտյան կոորդինատներից հաշվում է դրա բևեռային կոորդինատները։
+Նախ հայտարարեմ \ident{cartesian\_point} ստրուկտուրան՝ իր \ident{x},
+\ident{y} դաշտերով, և \ident{polar\_point} ստրուկտուրան՝ \ident{rho},
+\ident{phi} դաշտերով։
+
+\begin{Verbatim}
+/* դեկարտյան կետը */
+struct cartesian_point {
+  double x; /* աբսցիս */
+  double y; /* օրդինատ */
+};
+
+/* բևեռային կետը */
+struct polar_point {
+  double rho; /* շառավիղ */
+  double phi; /* ազիմուտ */
+};
+\end{Verbatim}
+
+ՈՒնենալով \ident{cartesian\_point} և \ident{polar\_point} ստրուկտուրաների
+հայտարարությունները, ես կարող եմ սահմանել \ident{to\_polar} ֆունկցիան, որը
+ստանում է դեկարտյան կետ և վերադարձնում է համարժեք բևեռային կետը։
+
+\begin{Verbatim}
+struct polar_point to_polar( struct cartesian_point c )
+{
+  struct polar_point res;
+  res.rho = sqrt( c.x * c.x + c.y * c.y );
+  res.phi = atan2( c.y, c.x );
+  return res;
+}
+\end{Verbatim}
+
+Ճիշտ նույն կերպ կարող եմ սահմանել \ident{to\_cartesian} ֆունկցիան, որը
+ստանում է բևեռային կետ և վերադարձնում է դրա դեկարտյան ներկայացումը։
+
+\begin{Verbatim}
+struct cartesian_point to_cartesian( struct polar_point p )
+{
+  struct cartesian_point res;
+  res.x = p.rho * cos( p.phi );
+  res.y = p.rho * sin( p.phi );
+  return res;
+}
+\end{Verbatim}
+
+Հիմա գրեմ \ident{main} ֆունկցիան, որտեղ ցուցադրված են վերը հայտարարված
+ստրուկտուրաների ու սահմանված ֆունկցիաների կիրառությունները։
+
+\begin{Verbatim}
+int main()
+{
+  struct cartesian_point c0;
+  puts( "Ներածիր դեկարտյան կոորդինատները x,y․ " );
+  scanf( "(%lf, %lf)", &c0.x, &c0.y );
+
+  struct polar_point p0 = to_polar( c0 );
+  puts( "Բևեռային կոորդնատներն են․ " );
+  printf( "ρ = %lf, φ = %lf\n", p0.rho, p0.phi );
+
+  struct cartesian_point c1 = to_cartesian( p0 );
+  puts( "Դեկարտյան կոորդնատներն են․ " );
+  printf( "x = %lf, y = %lf\n", c1.x, c1.y );
+
+  return 0;
+}
+\end{Verbatim}
+
+Ակնհայտ է, որ \ident{cartesian\_point} և \ident{polar\_point} ստրուկտուրաները,
+ըստ էության, նույնն են։ Երկուսն էլ մոդելավորում են կետի գաղափարը, բայց
+տարբերվում են իրենց դաշտերի անուններով։ Կարելի է երկուսի փոխարեն սահմանել
+մեկ \ident{point} ստրուկտուրա՝ դաշտերին տալով \ident{first} (առաջին) և
+\ident{second} (երկրորդ) պայմանական անունները, և այդ միակ ստրուկտուրան
+օգտագործել և՛ դեկարտյան, և՛ բևեռային կետերը ներկայացնելու համար։ Օրինակ.
+
+\begin{Verbatim}
+struct point {
+  double first;
+  double second;
+};
+\end{Verbatim}
+
+Դեկարտյան կետերը բևեռային կետերից տարբերելու համար կարող եմ \kw{typedef}
+հրամանով սահմանել \texttt{struct point} տիպի երկու \emph{հոմանիշ անուններ}։
+
+\begin{Verbatim}
+typedef struct point cartesian;
+typedef struct point polar;
+\end{Verbatim}
+
+\kw{typedef} հրամանը ծրագրում սահմանում է արդեն գոյություն ունեցող տիպի
+համարժեք, հոմանիշ անուն։ Օրինակ, կարող եմ իմ ծրագրում \ident{real} անունը
+սահմանել որպես \kw{long} \kw{double} տիպի անուն․
+
+\begin{Verbatim}
+typedef long double real;
+\end{Verbatim}
+
+Առավել հաճախ \kw{typedef} հայտարարությունն օգտագործվում է հենց ստրուկտուրաների
+համար կարճ անուններ հայտարարելու նպատակով։ Մեկ \kw{typedef} արտահայտությամբ
+կարելի է մի քանի համարժեք անուններ։ Օրինակ.
+
+\begin{Verbatim}
+typedef struct point {
+  double first;
+  double second;
+} cartesian, polar;
+\end{Verbatim}
+
+Ավելին, \kw{typedef} հայտարարություններ անելիս, կարելի է բաց թողնել
+ստրուկտուրայի անունը (եթե այն այլևս չի օգտագործվելու)։ Այսպես.
+
+\begin{Verbatim}
+typedef struct {
+  double first;
+  double second;
+} cartesian, polar;
+\end{Verbatim}
+
+Նման հայտարարությունից հետո վերը սահմանված \ident{to\_polar} ֆունկցիան
+կունենա հետևյալ տեսքը.
+
+\begin{Verbatim}
+polar to_polar( cartesian c )
+{
+  polar res;
+  res.first = sqrt( c.first * c.first + c.second * c.second );
+  res.second = atan2( c.second, c.first );
+  return res;
+}
+\end{Verbatim}
+
+Ստրուկտուրայի նոր նմուշ ստեղծելիս դրա դաշտերին տրվող արժեքները կարելի
+է թվարկել \Verb|{| և \Verb|}| փակագծերի մեջ առնված ցուցակում։ Օրինակ,
+\ident{to\_polar} ֆունկցիան կարելի է սահմանել նաև հետևյալ կերպ.
+
+\begin{Verbatim}
+polar to_polar( cartesian c )
+{
+  polar res = {
+    sqrt( c.first * c.first + c.second * c.second ),
+    atan2( c.second, c.first )
+  };
+  return res;
+}
+\end{Verbatim}
+
+Եթե ինչ-որ պատճառով պետք է խախտել արժեքների թվարկման հաջորդականությունը,
+ապա պետք է նշել, թե հերթական արժեքը որ դաշտին է վերագրվում՝ անունից առաջ
+\Verb|.| նիշը գրելով։ Օրինակ, այսպես.
+
+\begin{Verbatim}
+struct cartesian c1 = { .y = 1.2, .x = 3.4 };
+\end{Verbatim}
+
+Բայց մի անհարմար բան էլ կա. ստիպված եմ և՛ \ident{cartesian}, և՛
+\ident{polar} օբյեկտների դաշտերին դիմելու համար օգտագործել նրանց
+\ident{first} և \ident{second} անունները, որի պատճառով գրված կոդը նվազ
+հասկանալի է դառնում։ Ես այդ խնդիրը կարող եմ լուծել մի քանի պարզ
+\emph{մակրոսներ} սահմանելով.
+
+\begin{Verbatim}
+#define X(p) p.first
+#define Y(p) p.second
+#define RHO(p) p.first
+#define PHI(p) p.second
+\end{Verbatim}
+
+Կոմպիլյացիայից առաջ Սի լեզվով գրված ծրագրերը մշակվում են նախապրոցեսորի
+կողմից, և մակրոսները հենց նախապրոցեսորի սահմանումներ են։ Մակրոսի
+սահմանումն ունի հետևյալ տեսքը․
+
+\[
+\mathbf{\#define} \langle name\rangle[(\langle parameters\rangle)] \langle body\rangle
+\]
+
+Ամեն անգամ, երբ նախապրոցեսորը ծրագրի տեքստում հանդիպում է
+\(\langle name\rangle\) անունը, դա փոխարինվում է մակրոսի
+\(\langle body\rangle\) մարմնով՝ իհարկե, համապատասխան տեղերում տեղադրելով
+մակրոսի պարամետրերի արժեքները։ C լեզվում ընդունված է մակրոսների անունները
+գրել մեծատառերով։
+
+Դեկարտյան և բևեռային կոորդինատների դաշտերը ընտրող մակրոսները սահմանելուց
+հետո, օրինակ, \ident{to\_cartesian} ֆունկցիան կարող եմ սահմանել հետևյալ կերպ.
+
+\begin{Verbatim}
+cartesian to_cartesian( polar p )
+{
+  cartesian res;
+  X(res) = RHO(p) * cos( PHI(p) );
+  Y(res) = RHO(p) * sin( PHI(p) );
+  return res;
+}
+\end{Verbatim}
+
+Երբ C լեզվի նախապրոցեսորը կմշակի այս տեքստը, բոլոր մակրոսները կփոխարինվեն
+իրենց սահմանումներով և կոմպիլյացիան կշարունակվի այնպես, կարծես թե մակրոսներ
+չեն էլ եղել։
+
+Ստրուկտուրայի չափը՝ հիշողություն մեջ նրա նմուշի զբաղեցրած բայթերի քանակը,
+որոշվում է որպես նրա դաշտերի չափերի գումար։ Քանի որ \ident{point}
+ստրուկտուրան ունի երկու \kw{double} տիպի դաշտեր, ապա ճիշտ է
+\texttt{sizeof(struct point) >= 2 * sizeof(double)} հավասարությունը։

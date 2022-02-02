@@ -1,7 +1,7 @@
 %%\documentclass[a4paper,10pt,draft]{memoir}
 \documentclass[a4paper,12pt,draft]{report}
 \usepackage[top=1in,bottom=1.2in,left=1.2in,right=1in]{geometry}
-
+\usepackage{fancyvrb}
 
 \usepackage[dvips]{graphicx}
 \usepackage{fontspec}
@@ -35,6 +35,15 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
+\newcommand\kw[1]{\texttt{#1}}
+\newcommand\ident[1]{\texttt{\textit{#1}}}
+
+\newcommand\stoken[1]{\hbox{\(\langle\)\textit{#1}\(\rangle\)}}
+
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
+numbers=left,fontsize=\small,baselinestretch=1}
+
+
 \begin{document}
 
 \input{vcl-title.tex}
@@ -46,5 +55,7 @@
 \input{chapter02.tex}
 \input{chapter03.tex}
 \input{chapter04.tex}
+\input{chapter05.tex}
+\input{chapter06.tex}
 
 \end{document}
