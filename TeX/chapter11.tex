@@ -23,7 +23,7 @@ double sqr(double x)
 \end{Verbatim}
 
 ապա \([-1;1]\) միջակայքում դրա թվային ինտեգրալը կարելի է հաշվել
-հետևյալ հրամանով․
+հետևյալ հրամանով.
 
 \begin{Verbatim}
 double r0 = integral(&sqr, -1, 1);
@@ -34,7 +34,7 @@ double r0 = integral(&sqr, -1, 1);
 \emph{գրադարանի} և օգտագործել այլ ծրագրերում։
 
 Նախ պետք է պատրաստել գրադարանի իրականացումը։ Դրա համար ստեղծում
-եմ \texttt{ni.c} (numeric integral) ֆայլը, որում սահմանված են
+եմ \code{ni.c} (numeric integral) ֆայլը, որում սահմանված են
 \ident{epsilon} հաստատունը և Սիմպսոնի բանաձևը՝ \ident{simpson}
 ֆունկցիան։
 
@@ -149,6 +149,8 @@ $ clang -o prog11 ni.o prog11.o
 ինտեգրալները։ Ահա այն ամբողջ ճանապարհը, որ պետք է անցնել կոդի
 մակարդակով գրադարան ստեղծելու և օգտագործելու համար։
 
+\tristar
+
 Բայց միշտ չէ, որ հնարավոր է և պետք է գրադարանն օգտագործել կոդի
 մակարդակում։ Ծրագրերի մշակման աշխարում գոյություն ունեն
 գրադարանների ևս երկու հիմնական տեսակներ՝ \emph{ստատիկ կապակցվող}
@@ -217,6 +219,8 @@ $ gcc -o prog11 prog11.c -Լ. -lni -static
 Արդեն կարող եմ գործարկել \texttt{prog11} մոդուլը և համոզվել,
 որ այն աշխատում է իմ սպասածի պես։
 
+\tristar
+
 Անցնեմ առաջ ու պատմեմ դինամիկ (shared) գրադարան ստեղծելու մասին։
 \emph{Դինամիկ} գրադարան ստեղծելու համար Սի լեզվի կոմպիլյատորին
 պետք է հրահանգել, որ գեներացնի \emph{տեղաբաշխումից անկախ կոդով}
@@ -243,6 +247,21 @@ $ gcc -shared -o libni.so ni.lo
 ընթացիկ պանակի պարունակությունը, կտեսնեմ, որ այնտեղ ստեղծվել է
 \texttt{libni.so} մոդուլը։
 
-\endinput
+\begin{Verbatim}
+gcc -p prog11 prog11.c -L. -lni
+\end{Verbatim}
 
-_(դինամիկ գրադարանի օգտագործման մասին, օրինակ)_
+\begin{Verbatim}
+$ ./prog11
+./prog11: error while loading shared libraries: libni.so: cannot open shared object file: No such file or directory
+\end{Verbatim}
+
+\begin{Verbatim}
+export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+\end{Verbatim}
+
+\begin{Verbatim}
+$ ./prog11
+> 0.666667
+> 0.000000
+\end{Verbatim}

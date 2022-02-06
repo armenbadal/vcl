@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage{fancyvrb}
 \usepackage{makeidx}
-\usepackage[Conny]{fncychap}
+%\usepackage[Conny]{fncychap}
 
 \setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEAMariam}
 \setsansfont[Ligatures=TeX,HyphenChar="058A]{GHEAGrapalat}
@@ -60,8 +60,8 @@
 
 \newcommand\stoken[1]{\hbox{\(\langle\)\textit{#1}\(\rangle\)}}
 
-\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
-numbers=left,fontsize=\small,baselinestretch=1}
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}%
+{numbers=left,fontsize=\small,baselinestretch=1}
 
 \newcommand{\tristar}%
 {\bigskip{\centering \textbf{*~\raise1ex\hbox{*}~*}\par\smallskip}}
