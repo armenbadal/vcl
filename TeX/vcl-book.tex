@@ -1,4 +1,3 @@
-%%\documentclass[a4paper,10pt,draft]{memoir}
 \documentclass[a4paper,12pt,draft]{report}
 \usepackage[top=1in,bottom=1.2in,left=1.2in,right=1in]{geometry}
 
@@ -6,6 +5,7 @@
 \usepackage{fontspec}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
+\usepackage{makeidx}
 \usepackage[Conny]{fncychap}
 
 \setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEAMariam}
@@ -21,26 +21,65 @@
 \renewcommand{\bibname}{Գրականություն}
 \renewcommand{\indexname}{Առարկայական ցանկ}
 
-%\newcommand\Armenian[1]{%
-%\ifcase#1\relax\or Ա\or Բ\or Գ\or Դ\or Ե\or Զ\or Է%
-%\or Ը\or Թ \or Ժ\or ԺԱ\or ԺԲ\or ԺԳ\fi}
-%\renewcommand\thechapter{\Armenian{\value{chapter}}}
+%\newenvironment{titlepage}%
+%{\thispagestyle{empty}}%
+%{\newpage}
+
+%\pagestyle{plain}
+%\chapterstyle{bianchi}
 
 \tolerance=1500
 %\tolerance=10000 % վատ
 \linespread{1.2}
 \frenchspacing
 
+
+\renewcommand{\today}{%
+\number\day~%
+\ifcase\month
+\or հունվար%
+\or փետրվար%
+\or մարտ%
+\or ապրիլ%
+\or մայիս%
+\or հունիս%
+\or հուլիս%
+\or օգոստոս%
+\or սեպտեմբեր%
+\or հոկտեմբեր%
+\or նոյեմբեր%
+\or դեկտեմբեր%
+\fi ի~\number\year}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
-\newcommand\kw[1]{\texttt{#1}}
-\newcommand\ident[1]{\texttt{\textit{#1}}}
+\newcommand\code[1]{\texttt{\small #1}}
+\newcommand\ident[1]{\textsl{\code{#1}}}
+
 
 \newcommand\stoken[1]{\hbox{\(\langle\)\textit{#1}\(\rangle\)}}
 
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{%
 numbers=left,fontsize=\small,baselinestretch=1}
+
+\newcommand{\tristar}%
+{\bigskip{\centering \textbf{*~\raise1ex\hbox{*}~*}\par\smallskip}}
+
+%\newcommand{\term}[3]{\(\langle\)\textrm{\textit{#1}}\(\rangle^{#2}_{#3}\)}
+%\newcommand{\syte}[1]{\term{#1}{\null}{\null}}
+%\newcommand{\opte}[1]{\term{#1}{?}{\null}}
+%\newcommand{\stte}[1]{\term{#1}{*}{\null}}
+%\newcommand{\plte}[1]{\term{#1}{+}{\null}}
+%\newcommand{\ixte}[2]{\term{#1}{\null}{#2}}
+%\newcommand{\opky}[2]{\([\)#1~\syte{#2}\(]\)}
+%\newcommand{\optx}[1]{\([\)#1\(]\)}
+%\newenvironment{syntax}%
+%{\begingroup\parindent=16pt\ttfamily\small%
+%\obeylines\obeyspaces\par\medskip\noindent}%
+%{\endgroup\medskip\par}
+
+\hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յով հա-մա-պա-տաս-խա-նա-բար}
 
 
 \begin{document}
