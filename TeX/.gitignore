@@ -1,7 +1,11 @@
+*.out
 *.log
 *.pdf
 *.aux
 *.toc
 *.bbl
 *.blg
+*.idx
+*.ilg
+*.ind
 *synctex.*

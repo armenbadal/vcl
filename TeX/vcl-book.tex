@@ -1,3 +1,8 @@
+% arara: xelatex
+% arara: bibtex
+% arara: makeindex
+% arara: xelatex
+
 \documentclass[a4paper,12pt,draft]{report}
 \usepackage[top=1in,bottom=1.2in,left=1.2in,right=1in]{geometry}
 
@@ -81,6 +86,7 @@
 
 \hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յով հա-մա-պա-տաս-խա-նա-բար}
 
+\makeindex
 
 \begin{document}
 
@@ -106,6 +112,8 @@
 %
 \bibliographystyle{plain}
 \bibliography{vcl-book}
+
+\printindex
 
 \input{vcl-zpage.tex}
 
