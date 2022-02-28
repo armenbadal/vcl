@@ -26,13 +26,6 @@
 \renewcommand{\bibname}{Գրականություն}
 \renewcommand{\indexname}{Առարկայական ցանկ}
 
-%\newenvironment{titlepage}%
-%{\thispagestyle{empty}}%
-%{\newpage}
-
-%\pagestyle{plain}
-%\chapterstyle{bianchi}
-
 \tolerance=1500
 %\tolerance=10000 % վատ
 \linespread{1.2}
@@ -71,20 +64,28 @@
 \newcommand{\tristar}%
 {\bigskip{\centering \textbf{*~\raise1ex\hbox{*}~*}\par\smallskip}}
 
-%\newcommand{\term}[3]{\(\langle\)\textrm{\textit{#1}}\(\rangle^{#2}_{#3}\)}
-%\newcommand{\syte}[1]{\term{#1}{\null}{\null}}
+\newcommand{\term}[3]{\(\langle\)\textrm{\textit{#1}}\(\rangle^{#2}_{#3}\)}
+\newcommand{\syte}[1]{\term{#1}{\null}{\null}}
 %\newcommand{\opte}[1]{\term{#1}{?}{\null}}
 %\newcommand{\stte}[1]{\term{#1}{*}{\null}}
 %\newcommand{\plte}[1]{\term{#1}{+}{\null}}
-%\newcommand{\ixte}[2]{\term{#1}{\null}{#2}}
+\newcommand{\ixte}[2]{\term{#1}{\null}{#2}}
 %\newcommand{\opky}[2]{\([\)#1~\syte{#2}\(]\)}
 %\newcommand{\optx}[1]{\([\)#1\(]\)}
-%\newenvironment{syntax}%
-%{\begingroup\parindent=16pt\ttfamily\small%
-%\obeylines\obeyspaces\par\medskip\noindent}%
-%{\endgroup\medskip\par}
 
-\hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յով հա-մա-պա-տաս-խա-նա-բար}
+\newenvironment{syntax}%
+{\begingroup\parindent=16pt\ttfamily\small%
+\obeylines\obeyspaces\par\smallskip\noindent}%
+{\endgroup\smallskip\par}
+
+\newenvironment{epigraph}%
+{\begin{quote}\small\sffamily}%
+{\end{quote}}
+
+\hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յով
+փո-փո-խա-կան փո-փո-խա-կանը փո-փո-խա-կանի
+փո-փո-խա-կան-ներ փո-փո-խա-կան-նե-րի
+հա-մա-պա-տաս-խա-նա-բար}
 
 \makeindex
 
