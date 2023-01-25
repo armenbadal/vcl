@@ -95,7 +95,18 @@ V(r) = \frac{4}{3}\pi r^3։
 W(r,\rho)=\rho \frac{4}{3}\pi r^3։
 \]
 
-Այս բանաձևը ծրագրավորելու համար
+Այս բանաձևը ծրագրավորելու համար սահմանենք երկու իրական արգումենտներով 
+և իրական արժեք վերադարձնող \verb|weight_of_ball| ֆունկցիան.
+
+\begin{Verbatim}
+/* գնդի զանգվածի հաշվումը */
+double weight_of_ball(double ragius, double density)
+{
+  const double PI = 3.141592;
+  return density * 4 / 3 * PI * radius * radius * radius;
+}
+\end{Verbatim}
+
 
 Օրինակ, նախորդ զրույցում դեկարտյան
 կոորդինատներից բևեռային կոորդինատները ստանալու համար օգտագործեցի երկու
