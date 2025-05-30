@@ -6,56 +6,40 @@
 \documentclass[a4paper,12pt,draft]{report}
 \usepackage[top=1in,bottom=1.2in,left=1.2in,right=1in]{geometry}
 
-\usepackage[dvips]{graphicx}
+\usepackage[dvipdfm]{graphicx}
 \usepackage{amssymb}
 \usepackage{fontspec}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
 \usepackage{makeidx}
 \usepackage[Conny]{fncychap}
+\usepackage{polyglossia}
 
-\setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEAMariam}
-\setsansfont[Ligatures=TeX,HyphenChar="058A]{GHEAGrapalat}
-\setmonofont{DejaVu Sans Mono}
+\newfontfamily\armenianfont[Ligatures=TeX,HyphenChar="058A]{GHEA Mariam}
+\newfontfamily\armenianfontsf[Ligatures=TeX,HyphenChar="058A]{GHEA Grapalat}
+\newfontfamily\armenianfonttt{DejaVu Sans Mono}
 
+\setdefaultlanguage[numerals=arabic]{armenian}
 
-\renewcommand{\chaptername}{Զրույց}
-\renewcommand{\contentsname}{Բովանդակություն}
-\renewcommand{\figurename}{Նկար}
-\renewcommand{\tablename}{Աղյուսակ}
-\renewcommand{\appendixname}{Հավելված}
-\renewcommand{\bibname}{Գրականություն}
-\renewcommand{\indexname}{Առարկայական ցանկ}
+\renewcommand{\captionsarmenian}{%
+  \renewcommand{\chaptername}{Զրույց}
+  \renewcommand{\contentsname}{Բովանդակություն}
+  \renewcommand{\figurename}{Նկար}
+  \renewcommand{\tablename}{Աղյուսակ}
+  \renewcommand{\appendixname}{Հավելված}
+  \renewcommand{\bibname}{Գրականություն}
+  \renewcommand{\indexname}{Առարկայական ցանկ}
+}
 
-\tolerance=1500
-%\tolerance=10000 % վատ
+\tolerance=2500
 \linespread{1.2}
 \frenchspacing
 
-
-\renewcommand{\today}{%
-\number\day~%
-\ifcase\month
-\or հունվար%
-\or փետրվար%
-\or մարտ%
-\or ապրիլ%
-\or մայիս%
-\or հունիս%
-\or հուլիս%
-\or օգոստոս%
-\or սեպտեմբեր%
-\or հոկտեմբեր%
-\or նոյեմբեր%
-\or դեկտեմբեր%
-\fi ի~\number\year}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\parindent}{24pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
 
 \newcommand\code[1]{\texttt{\small #1}}
 \newcommand\ident[1]{\textsl{\code{#1}}}
-
 
 \newcommand\stoken[1]{\hbox{\(\langle\)\textit{#1}\(\rangle\)}}
 
@@ -80,10 +64,10 @@
 {\endgroup\smallskip\par}
 
 \newenvironment{epigraph}%
-{\begin{quote}\small\sffamily\slshape}%
-{\end{quote}}
+{\begin{quote}\begin{center}\small\sffamily}%
+{\end{center}\end{quote}}
 
-\hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յով
+\hyphenation{ֆունկ-ցիան ֆունկ-ցիա-յի ֆունկ-ցիա-յից ֆունկ-ցիա-յով
 փո-փո-խա-կան փո-փո-խա-կանը փո-փո-խա-կանի
 փո-փո-խա-կան-ներ փո-փո-խա-կան-նե-րի
 հա-մա-պա-տաս-խա-նա-բար}
@@ -97,9 +81,11 @@
 
 \input{vcl-title.tex}
 \input{vcl-copyright.tex}
-\input{vcl-dedication.tex}
+%\input{vcl-dedication.tex}
 
 \tableofcontents
+
+\captionsarmenian
 
 \input{chapter00.tex}
 \input{chapter01.tex}
