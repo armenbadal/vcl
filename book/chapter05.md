@@ -54,7 +54,7 @@
     struct polar_point to_polar( struct cartesian_point c )
     {
       struct polar_point res;
-      res.rho = sqrt( c.x * c.x + c.y * c.y );
+      res.rho = sqrt( c.x _ c.x + c.y _ c.y );
       res.phi = atan2( c.y, c.x );
       return res;
     }
@@ -136,7 +136,7 @@
     polar to_polar( cartesian c )
     {
       polar res;
-      res.first = sqrt( c.first * c.first + c.second * c.second );
+      res.first = sqrt( c.first _ c.first + c.second _ c.second );
       res.second = atan2( c.second, c.first );
       return res;
     }
@@ -148,7 +148,7 @@
     polar to_polar( cartesian c )
     {
       polar res = {
-        sqrt( c.first * c.first + c.second * c.second ),
+        sqrt( c.first _ c.first + c.second _ c.second ),
         atan2( c.second, c.first )
       };
       return res;
