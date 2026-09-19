@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  NOW: '{{now | date "02012006"}}'
+  MODE: "draft"
+  COLOUR: "black"
+
+tasks:
+  default:
+    desc: build the book PDF draft
+    cmds:
+      - task: build-pdf
+        vars:
+          MODE: "draft"
+  full:
+    desc: build the book PDF full
+    cmds:
+      - task: build-pdf
+        vars:
+          MODE: "full"
+
+  build-pdf:
+    internal: true
+    desc: build the book PDF
+    cmds:
+      - |
+        pandoc \
+          ch00-preface.md \
+          ch01-first-program.md \
+          ch02-variables.md \
+          ch03-functions.md \
+          ch04-branching.md \
+          ch05-structures.md \
+          ch06-arrays-loops.md \
+          ch07-dynamic-memory.md \
+          ch08-strings.md \
+          ch09-command-line.md \
+          ch10-files.md \
+          ch11-libraries.md \
+          ch12-preprocessor.md \
+          ch91-cmake.md \
+          --standalone \
+          --pdf-engine=xelatex \
+          --template=publish/book-template.latex \
+          --variable {{.MODE}} \
+          --variable {{.COLOUR}} \
+          --top-level-division=chapter \
+          --output 'si_book_{{.MODE}}_{{.NOW}}.pdf'
+
+  build-images:
+    dir: images
+    cmds:
+      - task

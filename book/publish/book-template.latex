@@ -1,0 +1,102 @@
+$if(full)$
+\documentclass[b5paper,11pt,final]{report}
+$else$
+\documentclass[b5paper,11pt,draft]{report}
+$endif$
+
+\usepackage[top=1in,bottom=1.5in,left=1in,right=1in]{geometry}
+\usepackage[dvips]{graphicx}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{makeidx}
+\usepackage[Conny]{fncychap}
+\usepackage{setspace}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+\usepackage{etoolbox}
+\usepackage{framed}
+\usepackage{polyglossia}
+\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{caption}
+
+\setdefaultlanguage[numerals=arabic]{armenian}
+
+\setmainfont[Ligatures=TeX,HyphenChar="058A]{GHEA Mariam}
+\setsansfont[Ligatures=TeX,HyphenChar="058A]{GHEA Grapalat}
+\setmonofont{DejaVu Sans Mono}
+
+\newfontfamily\armenianfont[Ligatures=TeX,HyphenChar="058A]{GHEA Mariam}
+\newfontfamily\armenianfontsf[Ligatures=TeX,HyphenChar="058A]{GHEA Grapalat}
+\newfontfamily\armenianfonttt[Scale=MatchLowercase]{DejaVu Sans Mono}
+
+\newfontfamily\titlefont{Arm Hmk's Bebas Neue}
+
+\renewcommand{\chaptername}{Գլուխ}
+\renewcommand{\contentsname}{Բովանդակություն}
+\renewcommand{\figurename}{Նկար}
+\renewcommand{\tablename}{Աղյուսակ}
+\renewcommand{\appendixname}{Հավելված}
+\renewcommand{\bibname}{Գրականություն}
+\renewcommand{\indexname}{Առարկայական ցանկ}
+
+\tolerance=2500
+\linespread{1.2}
+\frenchspacing
+
+\hypersetup{linktoc=none}
+
+$common.latex()$
+
+\newenvironment{ebnf}%
+{\begingroup\setlength{\tabcolsep}{2pt}\begin{center}\begin{tabular}{rcl}}%
+{\end{tabular}\end{center}\endgroup}
+
+\AtBeginEnvironment{Verbatim}{\small\setstretch{1.0}}
+\AtBeginEnvironment{Highlighting}{\small\setstretch{1.0}}
+
+\definecolor{colourblue}{RGB}{0,82,155}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{colourblue}}
+  {\filleft%
+    \begin{tikzpicture}
+    \node[
+      outer sep=0pt,
+      text width=2.5cm,
+      minimum height=3cm,
+      fill=colourblue,
+      font=\color{white}\sffamily\fontsize{64}{64}\selectfont,
+      align=center
+      ] (num) {\thechapter};
+    \end{tikzpicture}%
+  }
+  {10pt}
+  {\titlerule[2.5pt]\vskip3pt\titlerule\vskip4pt\LARGE\color{black}\MakeUppercase}
+
+\captionsetup{font=small,skip=20pt}
+
+\begin{document}
+
+%$if(full)$
+%\includepdf{publish/book-cover-v2-front.pdf}
+%\clearpage
+%$endif$
+
+\input{vcl-title.tex}
+
+\setcounter{page}{4}
+\tableofcontents
+
+$body$
+
+\input{vcl-zpage.tex}
+
+\end{document}
