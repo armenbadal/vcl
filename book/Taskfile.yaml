@@ -42,8 +42,10 @@ tasks:
           ch12-preprocessor.md \
           ch91-cmake.md \
           --standalone \
+          --syntax-highlighting=tango \
           --pdf-engine=xelatex \
           --template=publish/book-template.latex \
+          --lua-filter=publish/code-style.lua \
           --variable {{.MODE}} \
           --variable {{.COLOUR}} \
           --top-level-division=chapter \
