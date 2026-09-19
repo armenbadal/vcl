@@ -62,24 +62,13 @@ $common.latex()$
 \AtBeginEnvironment{Verbatim}{\small\setstretch{1.0}}
 \AtBeginEnvironment{Highlighting}{\small\setstretch{1.0}}
 
-\definecolor{colourblue}{RGB}{0,82,155}
+\definecolor{gray}{RGB}{127,128,127}
 
 \titleformat{\chapter}[display]
-  {\normalfont\bfseries\color{colourblue}}
-  {\filleft%
-    \begin{tikzpicture}
-    \node[
-      outer sep=0pt,
-      text width=2.5cm,
-      minimum height=3cm,
-      fill=colourblue,
-      font=\color{white}\sffamily\fontsize{64}{64}\selectfont,
-      align=center
-      ] (num) {\thechapter};
-    \end{tikzpicture}%
-  }
-  {10pt}
-  {\titlerule[2.5pt]\vskip3pt\titlerule\vskip4pt\LARGE\color{black}\MakeUppercase}
+  {\filcenter\normalfont\sffamily\bfseries}
+  {\color{gray}\fontsize{72}{72}\selectfont\thechapter}
+  {4pt}
+  {\color{gray}\titlerule\vskip2pt\LARGE\color{black}\MakeUppercase}
 
 \captionsetup{font=small,skip=20pt}
 
