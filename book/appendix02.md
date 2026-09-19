@@ -1,1 +1,0 @@
-# Google Test {#app:gtest}

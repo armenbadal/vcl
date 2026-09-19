@@ -1,3 +1,3 @@
-# CMake {#app:cmake}
+# CMake
 
 CMake֊ի մասին
