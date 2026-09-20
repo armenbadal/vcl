@@ -70,6 +70,14 @@ $common.latex()$
   {4pt}
   {\color{gray}\titlerule\vskip2pt\LARGE\color{black}\MakeUppercase}
 
+\titleformat{\section}
+  {\normalfont\bfseries\sffamily}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\sffamily}
+  {\thesubsection}{1em}{}
+
 \captionsetup{font=small,skip=20pt}
 
 \begin{document}
